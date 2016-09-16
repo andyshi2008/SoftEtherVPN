@@ -55,7 +55,7 @@ done
 /opt/vpncmd localhost /SERVER /CSV /CMD IPsecEnable /L2TP:yes /L2TPRAW:yes /ETHERIP:no /PSK:${PSK} /DEFAULTHUB:DEFAULT
 
 # enable SecureNAT
-/opt/vpncmd localhost /SERVER /CSV /HUB:DEFAULT /CMD SecureNatEnable
+#/opt/vpncmd localhost /SERVER /CSV /HUB:DEFAULT /CMD SecureNatEnable
 
 # enable OpenVPN
 /opt/vpncmd localhost /SERVER /CSV /CMD OpenVpnEnable yes /PORTS:1194
