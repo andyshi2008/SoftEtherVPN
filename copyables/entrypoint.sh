@@ -55,7 +55,7 @@ done
 /opt/vpncmd localhost /SERVER /CSV /CMD IPsecEnable /L2TP:yes /L2TPRAW:yes /ETHERIP:no /PSK:${PSK} /DEFAULTHUB:DEFAULT
 
 # enable SecureNAT
-#/opt/vpncmd localhost /SERVER /CSV /HUB:DEFAULT /CMD SecureNatEnable
+/opt/vpncmd localhost /SERVER /CSV /HUB:DEFAULT /CMD SecureNatEnable
 
 # enable OpenVPN
 /opt/vpncmd localhost /SERVER /CSV /CMD OpenVpnEnable yes /PORTS:1194
@@ -139,6 +139,13 @@ set -e
 
 echo \# [initial setup OK]
 
+echo \# [beigin modify configure]
+sed -i 's/string DhcpDnsServerAddress 192.168.30.1/string DhcpDnsServerAddress 192.168.1.1/g' /opt/vpn_server.config
+sed -i 's/string DhcpGatewayAddress 192.168.30.1/string DhcpGatewayAddress 192.168.1.1/g' /opt/vpn_server.config
+sed -i 's/string DhcpLeaseIPEnd 192.168.30.200/string DhcpLeaseIPEnd 192.168.1.200/g' /opt/vpn_server.config
+sed -i 's/string DhcpLeaseIPStart 192.168.30.10/string DhcpLeaseIPStart 192.168.1.150/g' /opt/vpn_server.config
+sed -i 's/string VirtualHostIp 192.168.30.1/string VirtualHostIp 192.168.1.149/g' /opt/vpn_server.config
+echo \# [end modify configure]
 fi
 
 exec "$@"
